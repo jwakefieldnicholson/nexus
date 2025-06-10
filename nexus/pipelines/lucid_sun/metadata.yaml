@@ -28,7 +28,7 @@ blocks:
   language: python
   name: revered grace
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_exporter
   upstream_blocks:
@@ -56,6 +56,8 @@ spark_config: {}
 tags: []
 type: python
 uuid: lucid_sun
+variables:
+  bigquery_table_id: scg-datascience.scg_stocks.EOD
 variables_dir: /home/src/mage_data/nexus
 widgets:
 - all_upstream_blocks_executed: false
