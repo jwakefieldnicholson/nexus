@@ -3,21 +3,91 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - revered_grace
   - missing_values_for_marvelous_inventor
   - unique_values_for_marvelous_inventor
+  - resilient_sword
+  - barrier_metrics
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: marvelous inventor
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: marvelous_inventor
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - solitary_frog
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: resilient sword
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - marvelous_inventor
+  uuid: resilient_sword
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    barriers:
+    - 0.55
+    - 0.75
+    - 0.75
+    - 0.85
+    file_path: transformers/barrier_metrics.py
+    file_source:
+      path: transformers/barrier_metrics.py
+    timeframes_months:
+    - 3
+    - 6
+    - 9
+    - 12
+    - 15
+    - 18
+    - 24
+    trading_days_per_year: 252
+  downstream_blocks:
+  - solitary_frog
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: barrier_metrics
+  retry_config: {}
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - marvelous_inventor
+  uuid: barrier_metrics
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - revered_grace
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: solitary frog
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - barrier_metrics
+  - resilient_sword
+  uuid: solitary_frog
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     dynamic: false
@@ -32,7 +102,7 @@ blocks:
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - marvelous_inventor
+  - solitary_frog
   uuid: revered_grace
 cache_block_output_in_memory: false
 callbacks: []
@@ -45,7 +115,7 @@ executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: lucid sun
+name: data_stockEOD
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -55,12 +125,12 @@ settings:
 spark_config: {}
 tags: []
 type: python
-uuid: lucid_sun
+uuid: data_stockeod
 variables:
   bigquery_table_id: scg-datascience.scg_stocks.EOD
 variables_dir: /home/src/mage_data/nexus
 widgets:
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     chart_style: horizontal
@@ -76,13 +146,13 @@ widgets:
   language: python
   name: missing values for marvelous_inventor
   retry_config: null
-  status: executed
+  status: failed
   timeout: null
   type: chart
   upstream_blocks:
   - marvelous_inventor
   uuid: missing_values_for_marvelous_inventor
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     chart_style: horizontal

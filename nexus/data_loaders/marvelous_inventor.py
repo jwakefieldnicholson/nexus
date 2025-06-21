@@ -142,7 +142,7 @@ def load_data_from_api(**kwargs) -> DataFrame:
 
     selected_universe = get_universe()
     tickers = selected_universe.ticker.tolist()
-    
+    tickers = ['AAPL', 'IBM'] #DELETE AFTER TESTING
     print(f'Loading {len(tickers)} tickers') 
     print(tickers)
 

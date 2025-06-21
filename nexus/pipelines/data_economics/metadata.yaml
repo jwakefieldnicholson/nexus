@@ -1,38 +1,66 @@
 blocks:
 - all_upstream_blocks_executed: true
   color: null
-  configuration: {}
+  configuration:
+    file_path: data_loaders/load_econ.py
+    file_source:
+      path: data_loaders/load_econ.py
   downstream_blocks:
-  - dawn_quest
+  - interpolate_ffill
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: effortless sound
+  name: load_econ
   retry_config: null
   status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: effortless_sound
+  uuid: load_econ
 - all_upstream_blocks_executed: true
   color: null
-  configuration: {}
+  configuration:
+    file_path: transformers/interpolate_ffill.py
+    file_source:
+      path: transformers/interpolate_ffill.py
+  downstream_blocks:
+  - block1
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: interpolate_ffill
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - load_econ
+  uuid: interpolate_ffill
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_path: transformers/block1.py
+    file_source:
+      path: transformers/block1.py
+    timeframes_months: null
+    trading_days_per_month: 21
   downstream_blocks:
   - revered_grace
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: dawn quest
-  retry_config: null
-  status: updated
+  name: block1
+  retry_config: {}
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
-  - effortless_sound
-  uuid: dawn_quest
-- all_upstream_blocks_executed: true
+  - interpolate_ffill
+  uuid: block1
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     file_path: data_exporters/revered_grace.py
@@ -49,7 +77,7 @@ blocks:
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - dawn_quest
+  - block1
   uuid: revered_grace
 cache_block_output_in_memory: false
 callbacks: []
@@ -62,7 +90,7 @@ executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: purple song
+name: data_economics
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -72,7 +100,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-uuid: purple_song
+uuid: data_economics
 variables:
   bigquery_table_id: scg-datascience.scg_stocks.econ
 variables_dir: /home/src/mage_data/nexus

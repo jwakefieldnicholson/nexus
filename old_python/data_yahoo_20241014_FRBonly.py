@@ -250,39 +250,3 @@ if __name__ == '__main__':
     get_frb_series(frb_series=FRB_RATES)
     get_frb_series(frb_series=FRB_SERIES)
     download_indicies()
-
-'''
-##### Main script #####
-if __name__ == '__main__':
-    if args.equity_only:
-        ticker_list = get_ticker_list()
-        download_ticker_data(ticker_list.Ticker)
-        get_frb_series(frb_series=FRB_RATES)
-        get_frb_series(frb_series=FRB_SERIES)
-        download_indicies()
-        update_database(ticker_list, db_file=EQUITIES_DATABASE_FILE)
-    elif args.etf_only:
-        etf_list = download_etfs(args.etf)
-        etf_list['Sector'] = 'ETF'
-        etf_list['MarketCap'] = np.nan
-        get_frb_series(frb_series=FRB_RATES, data_dir=ETF_DATA_DIR)
-        get_frb_series(frb_series=FRB_SERIES, data_dir=ETF_DATA_DIR)
-        download_indicies(data_dir=ETF_DATA_DIR)
-        update_database(etf_list, db_file=ETF_DATABASE_FILE, data_dir=ETF_DATA_DIR)
-    elif args.list_only:
-        ticker_list = download_specific_tickers(args.list)
-        get_frb_series(frb_series=FRB_RATES)
-        get_frb_series(frb_series=FRB_SERIES)
-        download_indicies()
-        update_database(ticker_list)
-    else:
-        ticker_list = get_ticker_list()
-        download_ticker_data(ticker_list.Ticker)
-        etf_list = download_etfs(args.etf)
-        specified_ticker_list = download_specific_tickers(args.list)
-        download_indicies()
-        get_frb_series(frb_series=FRB_RATES)
-        get_frb_series(frb_series=FRB_SERIES)
-        db_list = pd.concat([ticker_list, etf_list, specified_ticker_list])
-        update_database(db_list)
-'''

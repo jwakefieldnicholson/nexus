@@ -1,0 +1,4 @@
+{"operation": "detail", "resource": {"type": "pipeline", "uuid": "data_economics"}, "timestamp": 1750179848, "user": null}
+{"operation": "detail", "resource": {"type": "pipeline", "uuid": "data_economics"}, "timestamp": 1750179852, "user": null}
+{"operation": "detail", "resource": {"type": "pipeline", "uuid": "data_stockeod"}, "timestamp": 1750179878, "user": null}
+{"operation": "detail", "resource": {"type": "pipeline", "uuid": "data_stockeod"}, "timestamp": 1750179880, "user": null}

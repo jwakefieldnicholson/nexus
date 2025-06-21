@@ -1,0 +1,1 @@
+{"security_id": "str", "company_id": "str", "ticker": "str", "date": "date", "open": "float64", "high": "float64", "low": "float64", "close": "float64", "adj_open": "float64", "adj_high": "float64", "adj_low": "float64", "adj_close": "float64", "adj_volume": "float64", "fifty_two_week_high": "float64", "fifty_two_week_low": "float64", "dividend": "float64"}
